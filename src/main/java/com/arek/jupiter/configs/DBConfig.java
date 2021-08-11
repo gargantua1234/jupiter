@@ -5,7 +5,6 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 
 import javax.sql.DataSource;
 
@@ -13,16 +12,13 @@ import javax.sql.DataSource;
 @PropertySource("classpath:credentials.properties")
 public class DBConfig {
 
-    @Autowired
-    private Environment env;
-
     @Bean
-    public DataSource getDataSource() {
+    public DataSource getDataSource(final DBConfigProperties dbConfigProperties) {
         return DataSourceBuilder.create()
-                .driverClassName(env.getProperty("jdbc.driver"))
-                .url(env.getProperty("jdbc.url"))
-                .username(env.getProperty("jdbc.user"))
-                .password(env.getProperty("jdbc.password"))
+                .driverClassName(dbConfigProperties.getDriver())
+                .url(dbConfigProperties.getUrl())
+                .username(dbConfigProperties.getUser())
+                .password(dbConfigProperties.getPassword())
                 .build();
     }
 
