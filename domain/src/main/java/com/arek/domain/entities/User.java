@@ -1,4 +1,4 @@
-package com.arek.objects.entities;
+package com.arek.domain.entities;
 
 import lombok.*;
 

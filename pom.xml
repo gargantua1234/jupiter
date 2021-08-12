@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>objects</module>
+        <module>domain</module>
         <module>application</module>
     </modules>
 

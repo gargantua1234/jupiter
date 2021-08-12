@@ -1,7 +1,7 @@
 package com.arek.application.services;
 
-import com.arek.objects.entities.User;
-import com.arek.objects.repositories.UserRepository;
+import com.arek.domain.entities.User;
+import com.arek.domain.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;

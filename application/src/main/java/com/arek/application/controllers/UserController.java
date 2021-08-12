@@ -1,9 +1,9 @@
 package com.arek.application.controllers;
 
 import com.arek.application.services.UserService;
-import com.arek.objects.dto.UserDto;
-import com.arek.objects.entities.User;
-import com.arek.objects.mappers.UserMapper;
+import com.arek.domain.dto.UserDto;
+import com.arek.domain.entities.User;
+import com.arek.domain.mappers.UserMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

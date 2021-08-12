@@ -1,7 +1,7 @@
-package com.arek.objects.mappers;
+package com.arek.domain.mappers;
 
-import com.arek.objects.dto.UserDto;
-import com.arek.objects.entities.User;
+import com.arek.domain.dto.UserDto;
+import com.arek.domain.entities.User;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

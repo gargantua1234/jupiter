@@ -1,4 +1,4 @@
-package com.arek.objects.dto;
+package com.arek.domain.dto;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,6 +1,6 @@
-package com.arek.objects.repositories;
+package com.arek.domain.repositories;
 
-import com.arek.objects.entities.User;
+import com.arek.domain.entities.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
