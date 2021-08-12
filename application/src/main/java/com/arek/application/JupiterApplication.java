@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(scanBasePackages = {"com.arek.application",
+@SpringBootApplication(scanBasePackages = {
+        "com.arek.application",
         "com.arek.domain",
         "com.arek.exception"})
 @PropertySource("classpath:db.properties")

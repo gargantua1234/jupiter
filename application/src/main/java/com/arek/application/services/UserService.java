@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -21,6 +19,6 @@ public class UserService {
 
     public User getUserById(final int id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new DataNotFoundException("User not found"));
+                .orElseThrow(DataNotFoundException::new);
     }
 }
