@@ -22,5 +22,7 @@ public class JupiterApplication {
     //  3) obsluzyc zwracanie wyjatków (wykorzystac advaice)
     //  5) dodac spring security
     //  6) potestowac konfiguracje obiektów json
+    //  7) dodać testowanie klas controllera
+    //  8) 
 
 }
