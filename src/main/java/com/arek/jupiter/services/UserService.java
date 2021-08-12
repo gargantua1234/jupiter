@@ -4,7 +4,6 @@ import com.arek.jupiter.entities.User;
 import com.arek.jupiter.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.util.Streamable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
