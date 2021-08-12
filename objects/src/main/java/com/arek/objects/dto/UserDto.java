@@ -1,4 +1,4 @@
-package com.arek.jupiter.dtos;
+package com.arek.objects.dto;
 
 import lombok.Getter;
 import lombok.Setter;

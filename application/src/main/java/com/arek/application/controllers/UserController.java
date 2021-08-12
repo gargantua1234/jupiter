@@ -1,9 +1,9 @@
-package com.arek.jupiter.controllers;
+package com.arek.application.controllers;
 
-import com.arek.jupiter.dtos.UserDto;
-import com.arek.jupiter.entities.User;
-import com.arek.jupiter.mappers.UserMapper;
-import com.arek.jupiter.services.UserService;
+import com.arek.application.services.UserService;
+import com.arek.objects.dto.UserDto;
+import com.arek.objects.entities.User;
+import com.arek.objects.mappers.UserMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

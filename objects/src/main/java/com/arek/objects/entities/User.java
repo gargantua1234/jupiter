@@ -1,4 +1,4 @@
-package com.arek.jupiter.entities;
+package com.arek.objects.entities;
 
 import lombok.*;
 

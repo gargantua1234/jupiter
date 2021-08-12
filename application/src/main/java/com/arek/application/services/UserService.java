@@ -1,7 +1,7 @@
-package com.arek.jupiter.services;
+package com.arek.application.services;
 
-import com.arek.jupiter.entities.User;
-import com.arek.jupiter.repositories.UserRepository;
+import com.arek.objects.entities.User;
+import com.arek.objects.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;

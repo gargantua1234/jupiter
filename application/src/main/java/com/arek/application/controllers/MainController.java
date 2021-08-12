@@ -1,4 +1,4 @@
-package com.arek.jupiter.controllers;
+package com.arek.application.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,11 +1,15 @@
-package com.arek.jupiter;
+package com.arek.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.arek")
 @PropertySource("classpath:db.properties")
+@EnableJpaRepositories(basePackages = "com.arek.objects")
+@EntityScan(basePackages = "com.arek.objects")
 public class JupiterApplication {
 
     public static void main(String[] args) {
