@@ -31,9 +31,7 @@ public class UserController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") final int id) {
-        return userService.getUserById(id)
-                .map(ResponseEntity::ok)
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return ResponseEntity.ok(userService.getUserById(id));
     }
 
     @GetMapping(path = "/dto")
