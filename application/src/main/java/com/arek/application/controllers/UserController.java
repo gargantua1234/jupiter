@@ -4,6 +4,7 @@ import com.arek.application.services.UserService;
 import com.arek.domain.dto.UserDto;
 import com.arek.domain.entities.User;
 import com.arek.domain.mappers.UserMapper;
+import com.arek.library.util.ListUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 @AllArgsConstructor
-public class UserController {
+public final class UserController {
 
     private final UserService userService;
     private final UserMapper userMapper;
@@ -34,8 +35,7 @@ public class UserController {
     @GetMapping(path = "/dto")
     @ResponseStatus(HttpStatus.OK)
     public List<UserDto> getAllUsersDto() {
-        return userService.getAllUsers()
-                .map(userMapper::userToUserDto)
-                .toList();
+        return ListUtils.transform(userService.getAllUsers(), userMapper::userToUserDto);
     }
+
 }
