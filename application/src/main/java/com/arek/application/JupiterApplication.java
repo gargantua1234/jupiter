@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages = {"com.arek.application", "com.arek.domain"})
 @PropertySource("classpath:db.properties")
-@EnableJpaRepositories(basePackages = "com.arek.domain.repositories")
-@EntityScan(basePackages = "com.arek.domain.entities")
+@EnableJpaRepositories("com.arek.domain.repositories")
+@EntityScan("com.arek.domain.entities")
 public class JupiterApplication {
 
     public static void main(String[] args) {
@@ -17,8 +17,10 @@ public class JupiterApplication {
     }
 
     // TODO: 11.08.2021
+    //  1) przeslac do controlera i pobrac plik
     //  2) zwrocic z resta plik moze to byc wygenerowany pdf
     //  3) obsluzyc zwracanie wyjatków (wykorzystac advaice)
     //  5) dodac spring security
+    //  6) potestowac konfiguracje obiektów json
 
 }
