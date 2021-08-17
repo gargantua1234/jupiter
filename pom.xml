@@ -21,6 +21,7 @@
         <module>application</module>
         <module>exception</module>
         <module>library</module>
+        <module>files</module>
     </modules>
 
     <properties>

@@ -1,5 +1,6 @@
 package com.arek.application;
 
+import com.arek.files.configs.EnableFileModule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -13,11 +14,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @PropertySource("classpath:db.properties")
 @EnableJpaRepositories("com.arek.domain.repositories")
 @EntityScan("com.arek.domain.entities")
+@EnableFileModule
 public class JupiterApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(JupiterApplication.class, args);
     }
+
 
     // TODO: 11.08.2021
     //  1) przeslac do controlera i pobrac plik
