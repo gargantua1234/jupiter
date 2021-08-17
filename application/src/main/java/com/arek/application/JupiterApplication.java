@@ -1,7 +1,6 @@
 package com.arek.application;
 
 import com.arek.documents.configs.EnableDocumentsModule;
-import com.arek.documents.services.PdfGenerationService;
 import com.arek.files.configs.EnableFileModule;
 import com.arek.files.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,22 +25,19 @@ public class JupiterApplication implements CommandLineRunner {
     @Autowired
     private FileStorageService fileStorageService;
 
-    @Autowired
-    private PdfGenerationService pdfGenerator;
-
     public static void main(String[] args) {
         SpringApplication.run(JupiterApplication.class, args);
     }
 
     @Override
-    public void run(final String... args) throws Exception {
+    public void run(final String... args) {
         fileStorageService.initializeDirectory();
-        pdfGenerator.generateExamplePdf();
     }
 
     // TODO: 11.08.2021
     //  5) dodac spring security
     //  6) potestowac konfiguracje obiektów json
     //  7) dodać testowanie klas controllera
+    //  8) dodac loggowanie
 
 }
