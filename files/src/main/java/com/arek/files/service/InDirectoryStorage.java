@@ -2,7 +2,6 @@ package com.arek.files.service;
 
 import com.arek.files.exception.FileStorageException;
 import com.arek.files.resource.DirectoryResource;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,15 +12,17 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 @Service
-@RequiredArgsConstructor
 public class InDirectoryStorage implements FileStorageService {
 
-    private final DirectoryResource directoryResource;
+    private final Path tmpDirectory;
+
+    public InDirectoryStorage(final DirectoryResource directoryResource) {
+        tmpDirectory = Paths.get(directoryResource.getTmpPath());
+    }
 
     @Override
     public void initializeDirectory() {
         try {
-            final Path tmpDirectory = Paths.get(directoryResource.getTmpPath());
             if (Files.notExists(tmpDirectory)) {
                 Files.createDirectories(tmpDirectory);
             }
@@ -33,9 +34,8 @@ public class InDirectoryStorage implements FileStorageService {
     @Override
     public void save(final MultipartFile file) {
         try {
-            final Path tmpPath = Paths.get(directoryResource.getTmpPath());
-            Files.copy(file.getInputStream(), tmpPath.resolve(
-                    Objects.requireNonNull(file.getOriginalFilename())));
+            Files.copy(file.getInputStream(),
+                    tmpDirectory.resolve(Objects.requireNonNull(file.getOriginalFilename())));
         } catch (IOException e) {
             e.printStackTrace();
         }
