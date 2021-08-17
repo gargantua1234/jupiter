@@ -2,6 +2,7 @@ package com.arek.documents.generators;
 
 
 import com.arek.files.resource.DirectoryResource;
+import com.lowagie.text.DocumentException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
@@ -10,6 +11,7 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Locale;
@@ -18,7 +20,7 @@ import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
-public class SimplePdfGenerator implements PdfGenerator {
+public final class SimplePdfGenerator implements PdfGenerator {
 
     private static final String PDF = ".pdf";
 
@@ -42,9 +44,10 @@ public class SimplePdfGenerator implements PdfGenerator {
         return templateEngine.process(templateFileName, context);
     }
 
-    private File generateFile(final String filename, final String pdfContent) throws Exception {
+    private File generateFile(final String filename, final String pdfContent)
+            throws IOException, DocumentException {
         final File pdf = prepareFile(filename);
-        try (final FileOutputStream fileOutputStream = new FileOutputStream(pdf)) {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(pdf)) {
             final ITextRenderer pdfRenderer = new ITextRenderer();
             pdfRenderer.setDocumentFromString(pdfContent);
             pdfRenderer.layout();
