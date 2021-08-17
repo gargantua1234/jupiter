@@ -39,12 +39,9 @@ public class JupiterApplication implements CommandLineRunner {
         pdfGenerator.generateExamplePdf();
     }
 
-
     // TODO: 11.08.2021
-    //  2) zwrocic z resta plik moze to byc wygenerowany pdf
     //  5) dodac spring security
     //  6) potestowac konfiguracje obiektów json
     //  7) dodać testowanie klas controllera
-    //  8) 
 
 }
