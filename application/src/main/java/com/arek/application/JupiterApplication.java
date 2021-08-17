@@ -3,6 +3,8 @@ package com.arek.application;
 import com.arek.documents.configs.EnableDocumentsModule;
 import com.arek.files.configs.EnableFileModule;
 import com.arek.files.service.FileStorageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +23,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableFileModule
 @EnableDocumentsModule
 public class JupiterApplication implements CommandLineRunner {
+    private static final Logger LOGGER = LoggerFactory.getLogger(JupiterApplication.class);
 
     @Autowired
     private FileStorageService fileStorageService;
@@ -31,7 +34,9 @@ public class JupiterApplication implements CommandLineRunner {
 
     @Override
     public void run(final String... args) {
+        LOGGER.info("Starting command line runner run method");
         fileStorageService.initializeDirectory();
+        LOGGER.info("Ending command line runner run method");
     }
 
     // TODO: 11.08.2021
