@@ -43,6 +43,5 @@ public class JupiterApplication implements CommandLineRunner {
     //  5) dodac spring security
     //  6) potestowac konfiguracje obiektów json
     //  7) dodać testowanie klas controllera
-    //  8) dodac loggowanie
-
+    //  8) dodać logowanie oparte na aop
 }
