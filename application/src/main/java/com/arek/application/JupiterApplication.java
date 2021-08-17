@@ -1,5 +1,7 @@
 package com.arek.application;
 
+import com.arek.documents.configs.EnableDocumentsModule;
+import com.arek.documents.services.PdfGeneratorService;
 import com.arek.files.configs.EnableFileModule;
 import com.arek.files.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +20,23 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories("com.arek.domain.repositories")
 @EntityScan("com.arek.domain.entities")
 @EnableFileModule
+@EnableDocumentsModule
 public class JupiterApplication implements CommandLineRunner {
 
     @Autowired
     private FileStorageService fileStorageService;
+
+    @Autowired
+    private PdfGeneratorService pdfGenerator;
 
     public static void main(String[] args) {
         SpringApplication.run(JupiterApplication.class, args);
     }
 
     @Override
-    public void run(final String... args) {
+    public void run(final String... args) throws Exception {
         fileStorageService.initializeDirectory();
+        pdfGenerator.generateExamplePdf();
     }
 
 
