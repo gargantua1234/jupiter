@@ -28,15 +28,13 @@ public class JupiterApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(final String... args) throws Exception {
+    public void run(final String... args) {
         fileStorageService.initializeDirectory();
     }
 
 
     // TODO: 11.08.2021
-    //  1) przeslac do controlera i pobrac plik
     //  2) zwrocic z resta plik moze to byc wygenerowany pdf
-    //  3) obsluzyc zwracanie wyjatków (wykorzystac advaice)
     //  5) dodac spring security
     //  6) potestowac konfiguracje obiektów json
     //  7) dodać testowanie klas controllera
