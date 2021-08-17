@@ -9,7 +9,7 @@ import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
-public class PdfGeneratorService {
+public class PdfGenerationService {
 
     private final PdfGenerator pdfGenerator;
 
