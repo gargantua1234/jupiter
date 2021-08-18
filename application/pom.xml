@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.arek</groupId>
-            <artifactId>objects</artifactId>
+            <artifactId>domain</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
