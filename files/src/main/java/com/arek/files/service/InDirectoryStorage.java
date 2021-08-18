@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 @Service
-public class InDirectoryStorage implements FileStorageService {
+public final class InDirectoryStorage implements FileStorageService {
 
     private final Path tmpDirectory;
 
@@ -27,7 +27,7 @@ public class InDirectoryStorage implements FileStorageService {
                 Files.createDirectories(tmpDirectory);
             }
         } catch (IOException exception) {
-            throw new FileStorageException("Could not initialize directory");
+            throw new FileStorageException("Could not initialize directory", exception);
         }
     }
 
@@ -36,8 +36,8 @@ public class InDirectoryStorage implements FileStorageService {
         try {
             Files.copy(file.getInputStream(),
                     tmpDirectory.resolve(Objects.requireNonNull(file.getOriginalFilename())));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException exception) {
+            throw new FileStorageException("Could not save file in local storage.", exception);
         }
     }
 }
