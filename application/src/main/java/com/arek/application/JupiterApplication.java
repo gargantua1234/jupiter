@@ -3,6 +3,7 @@ package com.arek.application;
 import com.arek.documents.configs.EnableDocumentsModule;
 import com.arek.files.configs.EnableFileModule;
 import com.arek.files.service.FileStorageService;
+import com.arek.security.config.EnableSecurityModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.arek.domain.entities")
 @EnableFileModule
 @EnableDocumentsModule
+@EnableSecurityModule
 public class JupiterApplication implements CommandLineRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(JupiterApplication.class);
 
