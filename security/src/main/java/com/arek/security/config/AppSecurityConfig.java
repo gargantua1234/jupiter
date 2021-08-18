@@ -1,5 +1,6 @@
 package com.arek.security.config;
 
+import com.arek.domain.enums.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -38,13 +39,13 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         final UserDetails johnUser = User.builder()
                 .username("jon")
                 .password(passwordEncoder.encode("pass"))
-                .roles("STUDENT")
+                .roles(UserRole.STUDENT.name())
                 .build();
 
         final UserDetails lindaUser = User.builder()
                 .username("linda")
                 .password(passwordEncoder.encode("awds"))
-                .roles("ADMIN")
+                .roles(UserRole.ADMIN.name())
                 .build();
 
         return new InMemoryUserDetailsManager(
