@@ -2,7 +2,6 @@ package com.arek.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.crypto.SecretKey;
 import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +21,8 @@ import java.util.Date;
 public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
+    private final JwtConfig jwtConfig;
+    private final SecretKey secretKey;
 
     @Override
     public Authentication attemptAuthentication(final HttpServletRequest request,
@@ -46,16 +48,15 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
             final FilterChain chain,
             final Authentication authResult) {
 
-        final String key = "QWERTY123456_PL<MKO)QWERTY123456_PL<MKO)QWERTY123456_PL<MKO)QWERTY123456_PL<MKO)QWERTY123456_PL<MKO)";
-
         final String token = Jwts.builder()
                 .setSubject(authResult.getName())
                 .claim("authorities", authResult.getAuthorities())
                 .setIssuedAt(new Date())
                 .setExpiration(java.sql.Date.valueOf(LocalDate.now().plusWeeks(2)))
-                .signWith(Keys.hmacShaKeyFor(key.getBytes()))
+                .signWith(secretKey)
                 .compact();
 
-        response.addHeader("Authorization", "Bearer " + token);
+        final String jwtToken = jwtConfig.getTokenPrefix() + token;
+        response.addHeader(jwtConfig.getAuthorizationHeader(), jwtToken);
     }
 }

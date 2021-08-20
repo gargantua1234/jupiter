@@ -6,13 +6,14 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import javax.crypto.SecretKey;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,27 +23,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+@RequiredArgsConstructor
 public class JwtTokenVerifier extends OncePerRequestFilter {
+
+    private static final String EMPTY = "";
+
+    private final JwtConfig jwtConfig;
+    private final SecretKey secretKey;
 
     @Override
     protected void doFilterInternal(final HttpServletRequest request,
             final HttpServletResponse response,
             final FilterChain filterChain) throws ServletException, IOException {
 
-        final String authorizationHeader = request.getHeader("Authorization");
+        final String authorizationHeader = request.getHeader(jwtConfig.getAuthorizationHeader());
 
         if (Strings.isNullOrEmpty(authorizationHeader)
-                || !authorizationHeader.startsWith("Bearer ")) {
+                || !authorizationHeader.startsWith(jwtConfig.getTokenPrefix())) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        final String token = authorizationHeader.replace("Bearer ", "");
+        final String token = authorizationHeader.replace(jwtConfig.getTokenPrefix(), EMPTY);
         try {
-            final String key = "QWERTY123456_PL<MKO)QWERTY123456_PL<MKO)QWERTY123456_PL<MKO)QWERTY123456_PL<MKO)QWERTY123456_PL<MKO)";
-
             final Jws<Claims> claimsJws = Jwts.parserBuilder()
-                    .setSigningKey(Keys.hmacShaKeyFor(key.getBytes()))
+                    .setSigningKey(secretKey)
                     .build()
                     .parseClaimsJws(token);
 
