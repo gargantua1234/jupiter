@@ -1,5 +1,6 @@
 package com.arek.security.config;
 
+import com.arek.security.jwt.JwtTokenVerifier;
 import com.arek.security.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -35,6 +36,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager()))
+                .addFilterAfter(new JwtTokenVerifier(), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/hello", "/login").permitAll()
                 .antMatchers("/users", "/users/**").hasRole(STUDENT.name())
